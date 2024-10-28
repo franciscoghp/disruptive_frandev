@@ -71,28 +71,19 @@ export const uploadMediaContent = async (req: express.Request, res: express.Resp
 }
 
 async function updatePhotoCategory(id: string, cover: any) {
-  console.log({id, cover})
+
   let category: any = await Category.findById(id);
-  console.log({ category})
-  console.log({ ...category, cover})
   category.cover = cover
-  console.log(category)
   const res = await Category.findByIdAndUpdate( id, category, {
     new: true,
   });
-  console.log({res})
   return res
 }
 async function updatePhotoContent(id: string, url_image: any) {
-  console.log({id, url_image})
   let content: any = await Content.findById(id);
-  console.log({ content})
-  console.log({ ...content, url_image})
   content.url_image = url_image
-  console.log(content)
   const res = await Content.findByIdAndUpdate( id, content, {
     new: true,
   });
-  console.log({res})
   return res
 }

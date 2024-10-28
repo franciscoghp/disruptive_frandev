@@ -27,7 +27,7 @@ export const postContent = async (
   req: express.Request,
   res: express.Response
 ) => {
-  const { name_theme, url_image, url_video, content_text, credits } = req.body;
+  const { name_theme, url_video, content_text, credits } = req.body;
   const allContents = await Category.find({ name: { $in: name_theme } });
   if (!allContents)
     return res.status(404).json({ message: 'Category not found' });
@@ -40,7 +40,7 @@ export const postContent = async (
 
   const newContent = new Content({
     name_theme,
-    url_image,
+    url_image: '',
     url_video,
     content_text,
     credits,

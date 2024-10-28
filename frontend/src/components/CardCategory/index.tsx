@@ -5,7 +5,6 @@ import { useCategories } from '../../context/CategoriesContext';
 
 const CardCategory = ({ name, cover, permissions, _id }: categoryT) => {
   const { deleteCategory } = useCategories();
-  console.log({ name, cover, permissions, _id })
   // Generar una URL con un parámetro único
   const getImageUrlWithTimestamp = (cover: string) => {
     return `http://localhost:3000/uploads/${cover}`;

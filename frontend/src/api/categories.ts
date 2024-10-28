@@ -6,7 +6,6 @@ export const getCategoriesRq = async () => axios.get('api/categories');
 
 // Create Category
 export const createCategoryRq = async (category: categoryT) =>{
-  console.log(category)
   return axios.post('api/categories', category);
 }
 

@@ -8,6 +8,7 @@ import {
   deleteContentRq,
   updateContentRq,
   getContentRq,
+  uploadMediaContent,
 } from '../api/content';
 import { contentT } from '../types/contentT';
 import { useAuth } from './AuthContext';
@@ -17,15 +18,15 @@ type contentUpdateT = Omit<contentT, 'credits'>;
 
 const ContentContext = createContext({
   contentsData: [] as contentT[],
-  saveContent: (data: contentSaveT) => {
-    console.log(data);
+  saveContent: (data: contentSaveT, file?: File) => {
+    console.log(data, file);
   },
   errors: [''] as string[],
   deleteContent: (_id: string | number) => {
     console.log(_id);
   },
-  updateContent: (id: string, category: contentUpdateT) => {
-    console.log(id, category);
+  updateContent: (id: string, category: contentUpdateT, file?: File) => {
+    console.log(id, category, file);
   },
   getContent: (_id: string | number) => {
     console.log(_id);
@@ -62,7 +63,7 @@ const ContentProvider: React.FC<{ children: React.ReactNode }> = ({
     if (isAuthenticated) callContents();
   }, [isAuthenticated]);
 
-  const saveContent = async (data: contentSaveT) => {
+  const saveContent = async (data: contentSaveT, file?: File) => {
     try {
       const response = await createContentRq({
         name_theme: data.name_theme,
@@ -72,7 +73,17 @@ const ContentProvider: React.FC<{ children: React.ReactNode }> = ({
         content_text: data.content_text || '',
       });
 
+      // Si se creó correctamente, subimos la imagen si existe
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', file.name);
+        formData.append('id', String(response.data._id));
+        
+        await uploadMediaContent(formData);
+      }
       setContentsData([...contentsData, response.data]);
+      callContents();
       return response;
     } catch (error: any) {
       console.error(error);
@@ -90,13 +101,31 @@ const ContentProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const updateContent = async (id: string, content: contentUpdateT) => {
+  const updateContent = async (id: string, content: contentUpdateT, file?: File) => {
     try {
       const response = await updateContentRq(id, content);
-      callContents();
+      if (file) {
+        await uploadContentImage(id, file);
+      } else {
+        callContents();
+      }
       return response;
     } catch (error: any) {
       console.error(error);
+    }
+  };
+
+  const uploadContentImage = async (id: string | number, file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("id", String(id));
+
+    try {
+      await uploadMediaContent(formData);
+      await callContents();
+    } catch (error: any) {
+      console.error(error);
+      setErrors([error.response?.data?.message || "Error al subir la imagen"]);
     }
   };
 

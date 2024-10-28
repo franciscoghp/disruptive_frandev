@@ -11,7 +11,7 @@ import { Button, Card, CustomInput } from '../components/';
 import { useNavigate, useParams } from 'react-router-dom';
 import { usePermission } from '../context/PermissionContext';
 import { useCategories } from '../context/CategoriesContext';
-import { uploadMediaCategory } from '../api/categories';
+// import { uploadMediaCategory } from '../api/categories';
 
 const CategoriesFormPages = () => {
   const {
@@ -37,29 +37,26 @@ const CategoriesFormPages = () => {
   const onSubmit = handleSubmit(async (data) => {
     try {
       if (params.id) {
-        const response = await updateCategory(params.id, {
+        await updateCategory(params.id, {
           _id: data._id,
           name: data.name,
           cover: data.cover,
           permissions: data.permissions,
-        });
-        console.log(response)
-        await uploadPhotoAfterCreate(response)
+        }, fileState);
       } else {
-        console.log('hola')
-        const response = await saveCategory({
+        await saveCategory({
           _id: data._id,
           name: data.name,
           cover: data.cover,
           permissions: data.permissions,
-        });
-        console.log('hola2')
-        await uploadPhotoAfterCreate(response)
+        }, fileState);
       }
+      navigate('/categories');
     } catch (error) {
       console.error(error);
     }
   });
+  
 
   useEffect(() => {
     const loadCategory = async () => {
@@ -89,22 +86,6 @@ const CategoriesFormPages = () => {
       }
     };
     reader.readAsDataURL(event.target.files[0]);
-  }
-
-  const uploadPhotoAfterCreate = async (response: any) => {
-    const media =  response.data;
-    if (fileState && media?._id) {
-      const formData = new FormData();
-      formData.append('file', fileState);
-      formData.append('name', fileState?.name);
-      formData.append('id', String(media._id));
-      try {
-        await uploadMediaCategory(formData);
-        navigate('/categories');
-      } catch (error) {
-        console.log(error)
-      }
-    }
   }
 
   return (

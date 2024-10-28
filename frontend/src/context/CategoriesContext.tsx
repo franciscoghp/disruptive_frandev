@@ -7,21 +7,22 @@ import {
   getCategoriesRq,
   getCategoryRq,
   updateCategoryRq,
+  uploadMediaCategory,
 } from '../api/categories';
 import { categoryT } from '../types/categoryT';
 import { useAuth } from './AuthContext';
 
 const CategoriesContext = createContext({
   categoriesData: [] as categoryT[],
-  saveCategory: (data: categoryT) => {
-    console.log(data);
+  saveCategory: (data: categoryT, file?: File) => {
+    console.log(data, file);
   },
   errors: [''] as string[],
   deleteCategory: (_id: string | number) => {
     console.log(_id);
   },
-  updateCategory: (id: string, category: categoryT) => {
-    console.log(id, category);
+  updateCategory: (id: string, category: categoryT, file?: File) => {
+    console.log(id, category, file);
   },
   getCategory: (_id: string | number) => {
     console.log(_id);
@@ -58,7 +59,7 @@ const CategoriesProvider: React.FC<{ children: React.ReactNode }> = ({
     if (isAuthenticated) callCategories();
   }, [isAuthenticated]);
 
-  const saveCategory = async (data: categoryT) => {
+  const saveCategory = async (data: categoryT, file?: File) => {
     try {
       const response = await createCategoryRq({
         _id: data._id,
@@ -66,16 +67,39 @@ const CategoriesProvider: React.FC<{ children: React.ReactNode }> = ({
         cover: data.cover,
         permissions: data.permissions,
       });
-
-      setCategoriesData([...categoriesData, response.data]);
+      
+      // Si se creó correctamente, subimos la imagen si existe
+      if (file) {
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('name', file.name);
+        formData.append('id', String(response.data._id));
+        
+        await uploadMediaCategory(formData);
+      }
+  
+      // Actualizamos el estado de las categorías
+      setCategoriesData((prevCategories) => [...prevCategories, response.data]);
+      callCategories(); // Refresca todas las categorías
       return response;
     } catch (error: any) {
+      console.error('Error al guardar la categoría:', error);
+      setErrors([error.response?.data?.message || 'Error en el servidor']);
+    }
+  };
+  
+
+  const uploadCategoryImage = async (id: string | number, file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("id", String(id));
+
+    try {
+      await uploadMediaCategory(formData);
+      await callCategories(); // Refresca la lista de categorías después de la subida
+    } catch (error: any) {
       console.error(error);
-      setErrors(error.response.data);
-      if (Array.isArray(error.response.data)) {
-        return setErrors(error.response.data);
-      }
-      setErrors([error.response.data.message]);
+      setErrors([error.response?.data?.message || "Error al subir la imagen"]);
     }
   };
 
@@ -91,13 +115,18 @@ const CategoriesProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   };
 
-  const updateCategory = async (id: string, category: categoryT) => {
+  const updateCategory = async (id: string, category: categoryT, file?: File) => {
     try {
       const response = await updateCategoryRq(id, category);
-      callCategories();
+      if (file) {
+        await uploadCategoryImage(id, file);
+      } else {
+        callCategories(); // Refresca las categorías solo si no hay imagen
+      }
       return response;
     } catch (error: any) {
       console.error(error);
+      setErrors([error.response?.data?.message || "Error al actualizar categoría"]);
     }
   };
 

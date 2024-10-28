@@ -8,7 +8,7 @@ const register = async (req: express.Request, res: express.Response) => {
   try {
     const { username, email, password, role } = req.body;
     const userFound = await User.findOne({ email, username });
-    console.log(userFound);
+
     if (userFound) {
       return res.status(400).json('The username and email already exists');
     }

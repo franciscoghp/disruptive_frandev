@@ -30,16 +30,9 @@ The content library is organized by type and topic, with search capabilities for
 ```bash
 git clone https://github.com/franciscoghp/disruptive_frandev.git
 cd disruptive_frandev
-
-
-### Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/franciscoghp/disruptive_frandev.git
-cd disruptive_frandev
 ```
 
-### Step 2: Install Dependencies
+### Step 2: Install Dependencies's backend
 
 ```bash
 $ npm install
@@ -52,20 +45,29 @@ Create a .env file in the root of the project and add the necessary environment 
 ```bash
 MONGO_URI='mongodb+srv://francisco9mil:EKsmxqWK65HD7Vts@cluster-virtual-wallet.zil3i.mongodb.net/'
 JWT_SECRET='secretTokenKey'
+PORT=3000
 ```
 
 
 ### Step 4: Run the Project
 
+To run the backend, use the following command:
 ```bash
 # development
 $ npm run start
-
-# watch mode
-$ npm run start:dev
 ```
 
-### Step 8: Running Tests
+To run the frontend, install dependecies and use the following command:
+```bash
+cd frontend
+
+$ npm install
+
+# development
+$ npm run start
+```
+
+### Step 8 (Optional): Running Tests
 
 To run the tests, use the following command:
 

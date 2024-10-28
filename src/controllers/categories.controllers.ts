@@ -14,8 +14,8 @@ const getCategory = async (req: express.Request, res: express.Response) => {
 };
 const postCategories = async (req: express.Request, res: express.Response) => {
   try {
-    const { name, permissions, cover } = req.body;
-    console.log({ name, permissions, cover })
+    const { name, permissions } = req.body;
+
     const allPermissions = await Permission.find({
       name: { $in: permissions },
     });
@@ -33,18 +33,15 @@ const postCategories = async (req: express.Request, res: express.Response) => {
     if (!name) {
       return res.status(404).json({ message: 'Name not found' });
     }
-    // if (!cover) {
-    //   return res.status(404).json({ message: 'Cover not found' });
-    // }
 
     const newCategory = new Category({
       name,
       cover: '',
       permissions: findPermissions.map((permission) => permission.name),
     });
-    console.log({newCategory})
+
     const categorySaved = await newCategory.save();
-    console.log({categorySaved})
+
     if (!categorySaved) return res.status(500).json({ message: 'Error' });
     return res.json(categorySaved);
   } catch (error: any) {
