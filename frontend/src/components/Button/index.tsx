@@ -1,7 +1,7 @@
 export default function Button({
   onClick,
   children,
-  bgColor = 'bg-indigo-500',
+  bgColor = 'bg-cyan-500',
 }: {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children: React.ReactNode;

@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import ButtonLink from '../ButtonLink';
+import BackButton from '../ButtonBack';
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useAuth();
+
   const isAdminOrCreator = () => {
     if (user?.role === 'admin') return true;
     if (user?.role === 'creators') return true;
@@ -11,22 +13,27 @@ function Navbar() {
   };
 
   return (
-    <nav className="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700 mb-4">
+    <nav className="bg-white border-green-200 dark:bg-green-900 dark:border-green-700 mb-4">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="h-8"
-            alt="Flowbite Logo"
-          />
-          <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-            Disruptive
-          </span>
-        </a>
+
+        <div className="flex items-center space-x-4">
+          <BackButton />
+          <a href="/" className="flex items-center space-x-3 rtl:space-x-reverse">
+            <img
+              src="https://flowbite.com/docs/images/logo.svg"
+              className="h-8"
+              alt="Flowbite Logo"
+            />
+            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              Disruptive
+            </span>
+          </a>
+        </div>
+
         <button
           data-collapse-toggle="navbar-multi-level"
           type="button"
-          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-green-500 rounded-lg md:hidden hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-200 dark:text-green-400 dark:hover:bg-green-700 dark:focus:ring-green-600"
           aria-controls="navbar-multi-level"
           aria-expanded="false"
         >
@@ -40,18 +47,19 @@ function Navbar() {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="M1 1h15M1 7h15M1 13h15"
             />
           </svg>
         </button>
+
         <div
           className="hidden w-full md:block md:w-auto"
           id="navbar-multi-level"
         >
-          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col font-medium p-4 md:p-0 mt-4 border border-green-100 rounded-lg bg-green-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-green-800 md:dark:bg-green-900 dark:border-green-700">
             {isAuthenticated ? (
               <>
                 <li>
@@ -68,7 +76,7 @@ function Navbar() {
                     <li>
                       <Link
                         to="/categories"
-                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className="block py-2 px-3 text-green-900 rounded hover:bg-green-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-green-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       >
                         Categories
                       </Link>
@@ -76,7 +84,7 @@ function Navbar() {
                     <li>
                       <Link
                         to="/categories/form"
-                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                        className="block py-2 px-3 text-green-900 rounded hover:bg-green-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-green-700 dark:hover:text-white md:dark:hover:bg-transparent"
                       >
                         New Category
                       </Link>
@@ -84,22 +92,20 @@ function Navbar() {
                   </>
                 )}
                 {isAdminOrCreator() && (
-                  <>
-                    <li>
-                      <Link
-                        to="/contents/form"
-                        className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-                      >
-                        Add Content
-                      </Link>
-                    </li>
-                  </>
+                  <li>
+                    <Link
+                      to="/contents/form"
+                      className="block py-2 px-3 text-green-900 rounded hover:bg-green-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-green-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    >
+                      Add Content
+                    </Link>
+                  </li>
                 )}
                 <li>
                   <Link
                     to="/"
                     onClick={() => logout()}
-                    className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                    className="block py-2 px-3 text-green-900 rounded hover:bg-green-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-green-700 dark:hover:text-white md:dark:hover:bg-transparent"
                   >
                     Logout
                   </Link>
@@ -123,4 +129,3 @@ function Navbar() {
 }
 
 export default Navbar;
-

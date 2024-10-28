@@ -12,9 +12,9 @@ const CardCategory = ({ name, cover, permissions, _id }: categoryT) => {
   };
 
   return (
-    <div className="max-w-md rounded overflow-hidden shadow-lg bg-zinc-800">
+    <div className="max-w-md rounded overflow-hidden shadow-lg bg-zinc-800 w-[250px]">
       <img
-        className="w-[250px] h-[250px] object-cover"
+        className="w-full h-[250px] object-cover"
         src={getImageUrlWithTimestamp(cover)}
         alt={name}
       />

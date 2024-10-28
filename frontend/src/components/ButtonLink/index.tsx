@@ -4,7 +4,7 @@ import { ButtonLinkProps } from './interface';
 const ButtonLink = ({
   to,
   children,
-  bgColor = 'bg-indigo-500',
+  bgColor = 'bg-cyan-500',
 }: ButtonLinkProps) => (
   <Link
     to={to}

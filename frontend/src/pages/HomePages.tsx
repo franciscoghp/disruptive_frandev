@@ -37,35 +37,35 @@ const HomePages = () => {
   }, [searchTerm]);
 
   useEffect(() => {
-    console.log('sortedContentsData', sortedContentsData);
     setDataLocal(sortedContentsData);
   }, [sortedContentsData]);
 
   return (
-    <div className="flex flex-col ">
-      <h1 className="text-4xl font-bold text-sky-400">
-        Welcome, Sr(a) {!user ? 'Visitor' : user.username}
-      </h1>
-      <span className="text-2xl font-bold text-gray-300 mt-2">
+<div className="flex flex-col justify-center text-center">
+  <h1 className="text-4xl font-bold text-sky-400">
+    Welcome, Mr(s) {!user ? 'visitor' : user.username}
+  </h1>
+  <span className="text-2xl font-bold text-gray-300 mt-2">
+    {!user
+      ? 'If you have credentials you can access the login or register otherwise '
+      : `You are logged in as ${user.role} - Section Contents`}
+  </span>
+  {isAuthenticated && <Search onSearch={setSearchTerm} />}
+  
+  <div className="overflow-auto flex flex-wrap gap-2 mt-5">
+    {dataLocal.length > 0 && isAuthenticated ? (
+      dataLocal.map((content) => (
+        <CardContent key={content._id} {...content} />
+      ))
+    ) : (
+      <p className="text-2xl font-bold text-gray-300 mt-2">
         {!user
-          ? 'If you have credentials you can access the login or register otherwise '
-          : `You are logged in as ${user.role} - Section Contents`}
-      </span>
-      {isAuthenticated && <Search onSearch={setSearchTerm} />}
-      <div className="overflow-auto flex flex-wrap gap-2  mt-5 ">
-        {dataLocal.length > 0 && isAuthenticated ? (
-          dataLocal.map((content) => (
-            <CardContent key={content._id} {...content} />
-          ))
-        ) : (
-          <p className="text-2xl font-bold text-gray-300 mt-2">
-            {!user
-              ? 'You can not access the content without credentials'
-              : `Sorry , the content you are looking for does not exist for now. Please try again later.`}
-          </p>
-        )}
-      </div>
-    </div>
+          ? 'You cannot access the content without credentials.'
+          : 'Sorry, the content you are looking for does not exist for now. Please try again later.'}
+      </p>
+    )}
+  </div>
+</div>
   );
 };
 

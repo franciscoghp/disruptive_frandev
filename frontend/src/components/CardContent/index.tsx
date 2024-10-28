@@ -25,7 +25,7 @@ function CardContent({
     return false;
   };
   return (
-    <div className="max-w-sm bg-zinc-800 border border-gray-800 rounded-lg shadow">
+    <div className="max-w-sm bg-zinc-800 border border-gray-800 rounded-lg shadow w-[250px]">
       {!!url_image && (
         <img
           className="rounded-t-lg w-full h-[250px] object-cover"

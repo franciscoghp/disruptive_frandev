@@ -133,17 +133,6 @@ const CategoriesFormPages = () => {
         {errors.name && (
           <p className="text-red-500">name category is required</p>
         )}
-        {/* <CustomInput
-          type="text"
-          label="Cover image url"
-          name="cover"
-          register={register}
-          registerOptions={{ required: true }}
-        />
-        {errors.cover && (
-          <p className="text-red-500">cover image url is required</p>
-        )} */}
-
             <div className="self-stretch">
               <div className="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">
                 <div className="space-y-1 text-center">
