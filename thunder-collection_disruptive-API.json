@@ -1,0 +1,190 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "disruptive-API",
+    "collectionId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+    "dateExported": "2024-05-23T12:17:45.101Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "3e926a72-a133-4dec-9239-721a4c393a15",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "auth/register",
+            "url": "http://localhost:3000/auth/register/",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-05-23T11:56:31.255Z",
+            "modified": "2024-05-23T11:59:24.595Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"Pepe\",\n  \"email\": \"admin@admin.com\",\n  \"password\": \"qwerty\",\n  \"role\": \"admin\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "74eed392-ec89-43be-b544-dd6089bffb2d",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "auth/login",
+            "url": "http://localhost:3000/auth/login/",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-05-23T11:59:34.787Z",
+            "modified": "2024-05-23T12:00:12.001Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\": \"admin@admin.com\",\n  \"password\": \"qwerty\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "156718e1-96e3-4490-91dc-17c68f3f98e7",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/categories",
+            "url": "http://localhost:3000/api/categories/",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-05-23T12:00:27.430Z",
+            "modified": "2024-05-23T12:02:56.983Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"naturaleza\",\n  \"cover\": \"https://st2.depositphotos.com/1007566/9620/v/450/depositphotos_96203074-stock-illustration-natural-resources-design.jpg\",\n  \"permissions\": [\"images\", \"videos\"]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e0962b88-fd87-41f0-9b77-701f9b9a727b",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/categories",
+            "url": "http://localhost:3000/api/categories/",
+            "method": "GET",
+            "sortNum": 40000,
+            "created": "2024-05-23T12:03:44.504Z",
+            "modified": "2024-05-23T12:04:09.406Z",
+            "headers": []
+        },
+        {
+            "_id": "cb7e422b-355a-480d-8b2b-5563571334b8",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/categories/:id",
+            "url": "http://localhost:3000/api/categories/664f313092c59167d15e8784",
+            "method": "PUT",
+            "sortNum": 40000,
+            "created": "2024-05-23T12:05:50.099Z",
+            "modified": "2024-05-23T12:07:10.940Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"naturaleza des\",\n  \"cover\": \"https://st2.depositphotos.com/1007566/9620/v/450/depositphotos_96203074-stock-illustration-natural-resources-design.jpg\",\n  \"permissions\": [\"images\", \"videos\"]\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "e7ef4207-0eef-40e7-98c1-b1ac08fb23fd",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/categories/:id",
+            "url": "http://localhost:3000/api/categories/664f307092c59167d15e8770",
+            "method": "DELETE",
+            "sortNum": 50000,
+            "created": "2024-05-23T12:04:23.519Z",
+            "modified": "2024-05-23T12:05:29.064Z",
+            "headers": []
+        },
+        {
+            "_id": "231594c0-b833-4ca2-b6d7-7f867c12ced5",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/contents",
+            "url": "http://localhost:3000/api/contents/",
+            "method": "GET",
+            "sortNum": 60000,
+            "created": "2024-05-23T12:07:25.904Z",
+            "modified": "2024-05-23T12:14:45.413Z",
+            "headers": []
+        },
+        {
+            "_id": "ad011925-a050-4fe9-bc9d-5d55593704c1",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/contents",
+            "url": "http://localhost:3000/api/contents/",
+            "method": "POST",
+            "sortNum": 65000,
+            "created": "2024-05-23T12:14:27.875Z",
+            "modified": "2024-05-23T12:14:27.875Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name_theme\": \"naturaleza\",\n  \"url_image\": \"https://st2.depositphotos.com/1007566/9620/v/450/depositphotos_96203074-stock-illustration-natural-resources-design.jpg\",\n  \"url_video\": \"https://www.youtube.com/watch?v=ECRJX_qnAfI&ab_channel=America%27sFunniestHomeVideos\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "a6395ec8-000a-4647-8dee-8355f8a8c963",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/contents/:id",
+            "url": "http://localhost:3000/api/contents/664f325092c59167d15e878a",
+            "method": "PUT",
+            "sortNum": 70000,
+            "created": "2024-05-23T12:11:30.193Z",
+            "modified": "2024-05-23T12:13:07.857Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name_theme\": \"ciencias\",\n  \"url_image\": \"https://st2.depositphotos.com/1007566/9620/v/450/depositphotos_96203074-stock-illustration-natural-resources-design.jpg\",\n  \"url_video\": \"https://www.youtube.com/watch?v=ECRJX_qnAfI&ab_channel=America%27sFunniestHomeVideos\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "624b2d7b-d122-4115-a907-7b4846898ca9",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/contents/:id",
+            "url": "http://localhost:3000/api/contents/664f325092c59167d15e878a",
+            "method": "DELETE",
+            "sortNum": 73750,
+            "created": "2024-05-23T12:13:40.477Z",
+            "modified": "2024-05-23T12:14:16.859Z",
+            "headers": []
+        },
+        {
+            "_id": "14841c78-a0ca-4841-930f-260d2a9a0b18",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/permissions",
+            "url": "http://localhost:3000/api/permissions/",
+            "method": "GET",
+            "sortNum": 77500,
+            "created": "2024-05-23T12:15:17.538Z",
+            "modified": "2024-05-23T12:16:55.354Z",
+            "headers": []
+        },
+        {
+            "_id": "cc40ff33-fca5-4959-80bf-2813049215ea",
+            "colId": "31ebebc8-22a8-4007-91c0-4191b8003b1d",
+            "containerId": "",
+            "name": "api/permissions",
+            "url": "http://localhost:3000/api/permissions/",
+            "method": "POST",
+            "sortNum": 87500,
+            "created": "2024-05-23T12:16:38.279Z",
+            "modified": "2024-05-23T12:16:38.279Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"name\": \"videos\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "URhe4MlApLV0UilRuOdyFz4LXmUH97a5p1_sVS1GuY4Kt8wb55NdzpuquWDOegv0Q72YesvGI09yZjPAdZlf_Q"
+}
